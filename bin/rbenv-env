@@ -21,7 +21,7 @@ RBENV_COMMAND="ruby"
 RBENV_COMMAND_PATH="$(rbenv-which "$RBENV_COMMAND")"
 RBENV_BIN_PATH="${RBENV_COMMAND_PATH%/*}"
 
-if [ "$RBENV_VERSION" != "system" ]; then
+if ! [[ ${PATH} =~ "${RBENV_ROOT}/shims" ]] && echo 'export PATH="'${RBENV_ROOT}'/shims:${PATH}"'; then
   export PATH="${RBENV_BIN_PATH}:${PATH}"
 fi
 
